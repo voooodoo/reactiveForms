@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+
+.wrapper {
+    width:500px;
+    margin: 50px auto;
+}
+
+.delete {
+    
+    position: absolute;
+    bottom:12px;
+    right:10px;
+    cursor: pointer;
+}
+
+.delete:hover {
+    color:red;
+}
+.phone-group {
+    position: relative;
+}
