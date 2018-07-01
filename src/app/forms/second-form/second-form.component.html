@@ -1,0 +1,39 @@
+<div class="wrapper">
+  <div class="col-xs-8 col-xs-offset-2">
+    <form [formGroup]="secondForm" (ngSubmit)="onSubmit()">
+      <div *ngFor="let item of secondFormJSON">
+        
+        <ng-container [ngSwitch]="item.type">
+          
+          <ng-template ngSwitchCase="text">
+            <app-text-form [item] = "item" [form]="secondForm"></app-text-form>
+          </ng-template>
+          
+          <ng-template ngSwitchCase="radio">
+            <app-radio [item] = "item" [form]="secondForm"></app-radio>
+          </ng-template>
+          
+          <ng-template ngSwitchCase="array">
+              <label>{{item.name}}</label>
+            <div formArrayName="{{item.name}}">
+              
+              <div class="form-group" *ngFor="let phone of secondForm.controls['phones'].controls; let i = index">
+                <input class="form-control" formControlName="{{i}}" />
+              </div>
+            </div>  
+          </ng-template>
+
+        </ng-container>
+
+      </div>   
+      <div class="form-group">
+        <button class="btn btn-default" (click)="addPhone()">
+          Добавить телефон
+        </button>
+        <button 
+          class="btn btn-success" 
+          type="submit"
+          >send</button>
+      </div>
+      </form>
+</div>

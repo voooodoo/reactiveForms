@@ -1,0 +1,11 @@
+<div [formGroup]=form class="form-check">
+    <input 
+        class="form-check-input" 
+        type="checkbox" 
+        formControlName="{{item.name}}" 
+        value="{{item.name}}" 
+        id="{{item.name}}"
+    >
+    <label class="form-check-label" for="{{item.name}}">{{item.label}}</label>
+    <hr>
+</div>

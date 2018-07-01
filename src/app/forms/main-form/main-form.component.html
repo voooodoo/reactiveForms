@@ -1,0 +1,36 @@
+<div class="wrapper">
+  <div class="col-xs-8 col-xs-offset-2">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    
+    <div *ngFor="let item of formJSON; let i = index">
+      
+      <ng-container [ngSwitch]="item.type">
+        <ng-template ngSwitchCase="text">
+          <app-text-form [item] = "item" [form]="form"></app-text-form>
+        </ng-template>
+
+        <ng-template ngSwitchCase="password">
+          <app-password-form [item] = "item" [form]=form></app-password-form>
+        </ng-template>  
+
+        <ng-template ngSwitchCase="checkbox">
+          <app-checkbox [item] = "item" [form]=form></app-checkbox>
+        </ng-template>
+        
+        <ng-template ngSwitchCase="radio">
+          <app-radio [item] = "item" [form]=form></app-radio>
+        </ng-template>
+
+      </ng-container>
+    </div>
+
+ 
+      <button 
+        class="btn btn-success" 
+        type="submit"
+        [disabled] = "form.invalid"
+      >send</button>
+  
+    </form>
+  </div>  
+  </div>
