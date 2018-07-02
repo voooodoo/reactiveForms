@@ -64,6 +64,9 @@ export class SecondFormComponent implements OnInit {
   }
 
   
+  removeItem(index:number) {
+    (<FormArray>this.secondForm.controls["phones"]).removeAt(index);
+  }
 
   addPhone(value:string){
     value = value || '+3';

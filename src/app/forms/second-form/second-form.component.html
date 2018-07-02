@@ -18,7 +18,8 @@
             <div formArrayName="{{item.name}}">
               
               <div class="form-group" *ngFor="let phone of secondForm.controls['phones'].controls; let i = index">
-                <input class="form-control" formControlName="{{i}}" />
+                <input class="form-control" formControlName="{{i}}">
+                <i class="fas fa-times remove-icon" (click)="removeItem(i)"></i>
               </div>
             </div>  
           </ng-template>
