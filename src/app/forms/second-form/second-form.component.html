@@ -17,25 +17,21 @@
           </ng-container>  
         </ng-container>
         <div *ngIf="item.array">
-            <label>{{item.name}}</label>
-          <div formArrayName="{{item.name}}">
+          <label>{{item.name}}</label>
+        <div formArrayName="{{item.name}}">
             
-          <div class="form-group" *ngFor="let itemArray of secondForm.controls[item.name].controls; let i = index">
+        <div class="form-group" *ngFor="let itemArray of secondForm.controls[item.name].controls; let i = index">
             
-            <input class="form-control" formControlName="{{i}}">
-                <i class="fas fa-times remove-icon" (click)="removeItem(item.name, i)"></i>
-              </div>
-            </div>
-            <button type="button" class="btn btn-default" (click)="addItem(item.name, item.controls[0].value)">
-              add {{item.name}}
-            </button>  
-          </div>
-
-        
-
-      </div>   
-            <div class="form-group">
-        
+          <input class="form-control" formControlName="{{i}}">
+            <i class="fas fa-times remove-icon" (click)="removeItem(item.name, i)"></i>
+        </div>
+        </div>
+        <button type="button" class="btn btn-default" (click)="addItem(item.name, item.controls[0].value)">
+          add {{item.name}}
+          </button>  
+        </div>
+        </div>   
+            <div class="form-group">     
         <button 
           class="btn btn-success" 
           type="submit"

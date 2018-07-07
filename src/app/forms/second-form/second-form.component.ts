@@ -36,7 +36,7 @@ export class SecondFormComponent implements OnInit {
         {"value":"+3"}
       ]
     },{
-      "type": "",
+      "arrayType": "text",
       "name": "texts",
       "label": "texts",
       "array" : true,
@@ -48,8 +48,6 @@ export class SecondFormComponent implements OnInit {
   
   secondForm: FormGroup;
   
-  formArrayControlNames = [];
-
   constructor(private formBuilder:FormBuilder) {}
   
   ngOnInit() {
@@ -61,8 +59,6 @@ export class SecondFormComponent implements OnInit {
           fieldsCtrls[item.name] = this.formBuilder.array([
             this.formBuilder.control(item.value)
           ]);
-          this.formArrayControlNames.push(item.name);
-          console.log(1)
       break;
         
       default:

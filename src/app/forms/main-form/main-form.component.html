@@ -2,10 +2,10 @@
   <div class="col-xs-8 col-xs-offset-2">
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
     
-    <div *ngFor="let item of formJSON; let i = index">
+    <div *ngFor="let item of formData; let i = index">
       
       <ng-container [ngSwitch]="item.type">
-        <ng-template ngSwitchCase="text">
+        <ng-template ngSwitchCase="text" >
           <app-text-form [item] = "item" [form]="form"></app-text-form>
         </ng-template>
 
@@ -13,7 +13,7 @@
           <app-password-form [item] = "item" [form]=form></app-password-form>
         </ng-template>  
 
-        <ng-template ngSwitchCase="checkbox">
+        <ng-template ngSwitchCase="checkbox" >
           <app-checkbox [item] = "item" [form]=form></app-checkbox>
         </ng-template>
         
@@ -22,6 +22,43 @@
         </ng-template>
 
       </ng-container>
+
+      <div *ngIf="item.array">
+        <label>{{item.name}}</label>
+      <div formArrayName="{{item.name}}">
+        
+                
+        <div class="form-group" *ngFor="let itemArray of form.controls[item.name].controls; let i = index">
+          
+          <!--<ng-container [ngSwitch]="item.arrayType">
+            <ng-template ngSwitchCase="text">
+              <app-text-form [item] = "item" [form]="form"></app-text-form>
+            </ng-template>
+    
+            <ng-template ngSwitchCase="password">
+              <app-password-form [item] = "item" [form]=form></app-password-form>
+            </ng-template>  
+    
+            <ng-template ngSwitchCase="checkbox">
+              <app-checkbox [item] = "item" [form]=form></app-checkbox>
+            </ng-template>
+            
+            <ng-template ngSwitchCase="radio">
+              <app-radio [item] = "item" [form]=form></app-radio>
+            </ng-template>
+    
+          </ng-container>-->
+
+        <input class="form-control" formControlName="{{i}}">
+            <i class="fas fa-times remove-icon" (click)="removeItem(item.name, i)"></i>
+          </div>
+        </div>
+        <button type="button" class="btn btn-default" (click)="addItem(item.name, item.value)">
+          add {{item.name}} {{item.arrayType}}
+        </button>  
+      </div>
+
+
     </div>
 
  
