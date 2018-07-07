@@ -28,49 +28,58 @@ export class SecondFormComponent implements OnInit {
       ],
       "required":"true"
     }, {
-      "type": "array",
+      "type": "",
       "name": "phones",
       "label": "phones",
+      "array" : true,
       "controls": [
         {"value":"+3"}
       ]
-    }];
+    },{
+      "type": "",
+      "name": "texts",
+      "label": "texts",
+      "array" : true,
+      "controls": [
+        {"value":"everybody"}
+      ]
+    }]
+    ;
   
   secondForm: FormGroup;
+  
+  formArrayControlNames = [];
 
-  constructor(private formBuilder:FormBuilder) {
-    this.secondForm = this.formBuilder.group({      
-      "phones": new FormArray([
-    ])
-
-    })
-  }
+  constructor(private formBuilder:FormBuilder) {}
   
   ngOnInit() {
-    for(let i = 0; i<this.secondFormJSON.length;i++) {
-      let controlName = this.secondFormJSON[i];
-      switch(controlName.type) {
-        case 'array': 
-          console.log(1);
-          for(let i = 0; i<controlName.controls.length; i++) {
-            this.addPhone(controlName.controls[i].value)
-          }
-          break;
+
+    let fieldsCtrls = {};
+    for (let item of this.secondFormJSON) {
+      switch(item.array) {
+        case true:
+          fieldsCtrls[item.name] = this.formBuilder.array([
+            this.formBuilder.control(item.value)
+          ]);
+          this.formArrayControlNames.push(item.name);
+          console.log(1)
+      break;
         
-       default:
-        this.secondForm.addControl(controlName.name, new FormControl(controlName.value));
-      } 
+      default:
+        fieldsCtrls[item.name] = this.formBuilder.control(item.value || '');
+      }
+
+      this.secondForm = this.formBuilder.group( fieldsCtrls );
     }
+
   }
 
-  
-  removeItem(index:number) {
-    (<FormArray>this.secondForm.controls["phones"]).removeAt(index);
+  removeItem(name:string,index:number) {
+    (<FormArray>this.secondForm.controls[name]).removeAt(index);
   }
 
-  addPhone(value:string){
-    value = value || '+3';
-    (<FormArray>this.secondForm.controls["phones"]).push(new FormControl(value));
+  addItem(name:string, value:string ){
+    (<FormArray>this.secondForm.controls[name]).push(new FormControl(value));
   }
 
   onSubmit() {
