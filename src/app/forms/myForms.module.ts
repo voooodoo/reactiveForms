@@ -7,6 +7,7 @@ import { PasswordFormComponent } from './forms-item/password-form/password-form.
 import { CheckboxComponent } from './forms-item/checkbox/checkbox.component';
 import { RadioComponent } from './forms-item/radio/radio.component';
 import { SecondFormComponent } from './second-form/second-form.component';
+import { SelectedFormComponent } from './selected-form/selected-form.component';
 
 
 @NgModule({
@@ -15,7 +16,7 @@ import { SecondFormComponent } from './second-form/second-form.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  declarations: [MainFormComponent, TextFormComponent, PasswordFormComponent, CheckboxComponent, RadioComponent, SecondFormComponent],
-  exports:[MainFormComponent, SecondFormComponent]
+  declarations: [MainFormComponent, TextFormComponent, PasswordFormComponent, CheckboxComponent, RadioComponent, SecondFormComponent, SelectedFormComponent],
+  exports:[MainFormComponent, SecondFormComponent,SelectedFormComponent]
 })
 export class MyFormsModule { }
