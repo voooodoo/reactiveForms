@@ -1,0 +1,16 @@
+<div [formGroup]="form">  
+  <label for="{{item.name}}">select {{item.label}}</label>
+  <br>
+  <select 
+    name="{{item.name}}" 
+    id="{{item.name}}" 
+    formControlName="{{item.name}}"
+  >
+    <ng-container *ngFor="let option of item.options">
+      <option
+       value="{{option.value}}" 
+      >{{option.value}}</option>
+    </ng-container>              
+  </select>
+</div>
+

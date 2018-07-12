@@ -11,17 +11,21 @@
 
             
         <ng-template ngSwitchCase="radio">
-          <app-radio [item] = "item" [form]="selectedForm"></app-radio>
+          <app-radio [item] = "item"  ></app-radio>
         </ng-template>
 
         <ng-template ngSwitchCase="select">
-          <label for="{{item.name}}">select {{item.label}}</label> <br>
-          <select name="{{item.name}}" id="{{item.name}}" formControlName="{{item.name}}">
-            <ng-container *ngFor="let option of item.options">
-              <option value="{{option.value}}" [selected]="option.selected">{{option.value}}</option>
-            </ng-container>              
-          </select>
+          <app-select [item] = "item" [form]="selectedForm"></app-select>  
         </ng-template>
+        <ng-template ngSwitchCase="group">
+          <div formGroupName="UsaGroup"> 
+            <ng-container *ngFor="let child of item.children" >
+              <input type="text" formControlName="{{child.name}}">
+              {{child.name}}
+            </ng-container>
+          </div>
+        </ng-template>
+
 
       </ng-container>
     </div>
